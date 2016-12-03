@@ -53,9 +53,12 @@ def parse_factor(input):
     >>> parse_factor('h[k1]')
     ('A', 'h', 'k1')
 
+    >>> parse_factor('h[-k1]')
+    ('A', 'h', '-k1')
+
     """
 
-    match = re.search('(\w+)\[(\w+)\]', input)
+    match = re.search('(\w+)\[([^\]]+)\]', input)
     operation = match.group(1)
     operand = match.group(2)
     op_type = classify(operation)
